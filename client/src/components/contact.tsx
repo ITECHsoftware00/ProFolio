@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { Mail, Phone, Linkedin, Github } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -34,64 +35,100 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-32">
-      <div className="container px-6 md:px-12">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif mb-4">Let's work together</h2>
-            <p className="text-muted-foreground">Have a project in mind? I'd love to hear about it.</p>
-          </div>
+    <section id="contact" className="py-32 container px-6 md:px-12">
+      <div className="grid lg:grid-cols-2 gap-16 md:gap-24">
+        <div>
+          <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Let's Build Together</h2>
+          <h3 className="text-4xl md:text-5xl font-display font-bold mb-6">Ready to Start Your Project?</h3>
+          <p className="text-xl text-muted-foreground mb-12">
+            If you're looking for reliability, expertise, and a partner who delivers, look no further than TechSolution.
+          </p>
 
+          <div className="space-y-8">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-lg bg-secondary/20 text-primary">
+                <Mail className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-1">Email</h4>
+                <a href="mailto:tsolution418@gmail.com" className="text-xl font-bold hover:text-primary transition-colors">
+                  tsolution418@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-lg bg-secondary/20 text-primary">
+                <Phone className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-1">Phone</h4>
+                <a href="tel:+380951594897" className="text-xl font-bold hover:text-primary transition-colors">
+                  +380 95 159 4897
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-lg bg-secondary/20 text-primary">
+                <Linkedin className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-1">LinkedIn</h4>
+                <a href="https://www.linkedin.com/in/abdul-halim-1aba17374" target="_blank" rel="noreferrer" className="text-xl font-bold hover:text-primary transition-colors">
+                  Connect with me
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-secondary/5 p-8 md:p-12 rounded-3xl border border-border">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="uppercase text-xs font-bold tracking-widest">Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Your name" {...field} className="border-x-0 border-t-0 border-b rounded-none px-0 focus-visible:ring-0 focus-visible:border-foreground transition-colors bg-transparent" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="uppercase text-xs font-bold tracking-widest">Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="your@email.com" {...field} className="border-x-0 border-t-0 border-b rounded-none px-0 focus-visible:ring-0 focus-visible:border-foreground transition-colors bg-transparent" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your name" {...field} className="bg-background border-border focus:border-primary" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="your@email.com" {...field} className="bg-background border-border focus:border-primary" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="uppercase text-xs font-bold tracking-widest">Message</FormLabel>
+                    <FormLabel>Message</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Tell me about your project..." {...field} className="border-x-0 border-t-0 border-b rounded-none px-0 focus-visible:ring-0 focus-visible:border-foreground transition-colors resize-none min-h-[100px] bg-transparent" />
+                      <Textarea placeholder="Tell me about your project..." {...field} className="bg-background border-border focus:border-primary min-h-[150px]" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <div className="pt-4">
-                <Button type="submit" size="lg" className="w-full md:w-auto rounded-none uppercase tracking-widest font-bold px-8">
-                  Send Message
-                </Button>
-              </div>
+              <Button type="submit" size="lg" className="w-full rounded-full font-bold text-lg py-6">
+                Send Message
+              </Button>
             </form>
           </Form>
         </div>

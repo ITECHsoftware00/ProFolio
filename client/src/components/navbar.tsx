@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "#work", label: "Work" },
-  { href: "#about", label: "About" },
+  { href: "#services", label: "Services" },
+  { href: "#skills", label: "Skills" },
+  { href: "#testimonials", label: "Testimonials" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -32,11 +34,11 @@ export default function Navbar() {
     >
       <Link href="/">
         <a className="text-xl font-display font-bold tracking-tighter hover:text-primary transition-colors">
-          ALEX<span className="text-primary">.</span>DEV
+          TechSolution<span className="text-primary">.</span>
         </a>
       </Link>
 
-      <div className="hidden md:flex items-center gap-8">
+      <div className="hidden lg:flex items-center gap-8">
         {links.map((link) => (
           <a 
             key={link.href} 
@@ -51,12 +53,12 @@ export default function Navbar() {
           href="#contact" 
           className="px-5 py-2 rounded-full bg-foreground text-background text-sm font-bold hover:bg-primary hover:text-primary-foreground transition-colors"
         >
-          Let's Talk
+          Get In Touch
         </a>
       </div>
 
-      <div className="md:hidden">
-        <span className="text-sm font-medium">Menu</span>
+      <div className="lg:hidden">
+        <a href="#contact" className="text-sm font-bold">Menu</a>
       </div>
     </motion.nav>
   );
