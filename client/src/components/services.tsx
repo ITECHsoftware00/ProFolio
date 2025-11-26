@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, Database, Layout, Server, Figma, Cloud, Monitor, Globe } from "lucide-react";
+import { Database, Server, Figma, Cloud, Monitor, Globe } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const services = [
@@ -35,43 +35,91 @@ const services = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      type: "spring",
+      stiffness: 50,
+      damping: 20
+    } as const
+  },
+};
+
 export default function Services() {
   return (
     <section id="services" className="py-32 bg-secondary/5">
       <div className="container px-6 md:px-12">
         <div className="mb-16 md:text-center max-w-3xl mx-auto">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">What I Do</h2>
-          <h3 className="text-4xl md:text-5xl font-display font-bold mb-6">Development Services</h3>
-          <p className="text-xl text-muted-foreground">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-sm font-bold uppercase tracking-widest text-primary mb-2"
+          >
+            What I Do
+          </motion.h2>
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-display font-bold mb-6"
+          >
+            Development Services
+          </motion.h3>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-muted-foreground"
+          >
             From concept to deployment, I provide end-to-end solutions that drive business growth.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              variants={itemVariants}
+              whileHover={{ y: -10 }}
             >
-              <Card className="bg-secondary/10 border-border hover:bg-secondary/20 transition-colors h-full group">
+              <Card className="bg-secondary/10 border-border hover:bg-secondary/20 transition-colors h-full group cursor-default hover:shadow-2xl hover:shadow-primary/5 duration-500">
                 <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                     <service.icon className="w-6 h-6" />
                   </div>
                   <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-500">
                     {service.description}
                   </p>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

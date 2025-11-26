@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import heroImage from "@assets/generated_images/dark_sleek_abstract_digital_fluid_background_for_developer_portfolio.png";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const stats = [
   { value: "50+", label: "Projects Completed" },
@@ -9,16 +9,52 @@ const stats = [
   { value: "98%", label: "Success Rate" },
 ];
 
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.8,
+      ease: "easeInOut" as const,
+    },
+  }),
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5 }
+  },
+};
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background z-10" />
-        <img 
+        <motion.img 
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.3 }}
+          transition={{ duration: 1.5 }}
           src={heroImage} 
           alt="Abstract digital texture" 
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover"
         />
       </div>
 
@@ -26,9 +62,10 @@ export default function Hero() {
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
           <div className="max-w-4xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              custom={0}
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
               className="mb-6"
             >
               <span className="px-3 py-1 rounded-full border border-primary/20 bg-primary/10 text-primary text-sm font-mono uppercase tracking-wider">
@@ -37,9 +74,10 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              custom={1}
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
               className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-8 tracking-tight"
             >
               Senior Full-Stack <br />
@@ -47,9 +85,10 @@ export default function Hero() {
             </motion.h1>
 
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              custom={2}
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
               className="text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed space-y-6"
             >
               <p>
@@ -61,9 +100,10 @@ export default function Hero() {
             </motion.div>
             
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              custom={3}
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
               className="flex flex-wrap gap-6 mb-16"
             >
               <a 
@@ -84,16 +124,17 @@ export default function Hero() {
         </div>
 
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border/50 pt-12"
         >
           {stats.map((stat, index) => (
-            <div key={index} className="space-y-2">
+            <motion.div key={index} variants={itemVariants} className="space-y-2">
               <h3 className="text-4xl md:text-5xl font-display font-bold text-foreground">{stat.value}</h3>
               <p className="text-sm md:text-base text-muted-foreground uppercase tracking-wide font-medium">{stat.label}</p>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

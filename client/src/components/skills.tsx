@@ -16,49 +16,66 @@ export default function Skills() {
   return (
     <section id="skills" className="py-32 container px-6 md:px-12">
       <div className="grid md:grid-cols-2 gap-16 items-center">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">Technical Expertise</h2>
           <h3 className="text-4xl md:text-5xl font-display font-bold mb-8">Skills & Technologies</h3>
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
             I possess advanced expertise across the entire tech stack, constantly adapting to the latest technologies to build scalable, high-performance applications.
           </p>
-          <div className="p-8 bg-secondary/10 rounded-2xl border border-border">
+          <div className="p-8 bg-secondary/10 rounded-2xl border border-border hover:border-primary/50 transition-colors duration-500">
             <h4 className="text-2xl font-bold mb-4">Why Clients Trust TechSolution</h4>
             <ul className="space-y-4 text-muted-foreground">
-              <li className="flex items-center gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full" />
-                Clean, Maintainable Code
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full" />
-                Scalable Architecture
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full" />
-                User-Centric Design
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="w-2 h-2 bg-primary rounded-full" />
-                On-Time Delivery
-              </li>
+              {["Clean, Maintainable Code", "Scalable Architecture", "User-Centric Design", "On-Time Delivery"].map((item, i) => (
+                <motion.li 
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + (i * 0.1) }}
+                  className="flex items-center gap-3"
+                >
+                  <span className="w-2 h-2 bg-primary rounded-full" />
+                  {item}
+                </motion.li>
+              ))}
             </ul>
           </div>
-        </div>
+        </motion.div>
 
         <div className="space-y-8">
           {skills.map((skill, index) => (
             <motion.div 
               key={index}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
             >
               <div className="flex justify-between mb-2">
                 <span className="font-bold">{skill.name}</span>
-                <span className="text-muted-foreground font-mono">{skill.level}%</span>
+                <motion.span 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.5 + (index * 0.05) }}
+                  className="text-muted-foreground font-mono"
+                >
+                  {skill.level}%
+                </motion.span>
               </div>
-              <Progress value={skill.level} className="h-2" />
+              <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.level}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                  className="h-full bg-primary rounded-full"
+                />
+              </div>
             </motion.div>
           ))}
         </div>
