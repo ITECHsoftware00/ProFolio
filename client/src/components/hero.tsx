@@ -1,47 +1,74 @@
 import { motion } from "framer-motion";
-import heroImage from "@assets/generated_images/minimalist_architectural_abstract_texture_for_portfolio_background.png";
+import heroImage from "@assets/generated_images/dark_sleek_abstract_digital_fluid_background_for_developer_portfolio.png";
+import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      <div className="container px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        >
-          <h1 className="text-6xl md:text-8xl font-serif font-medium leading-[0.9] tracking-tight mb-8">
-            Designing <br />
-            <span className="text-muted-foreground italic">Digital</span> <br />
-            Spaces.
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed mb-12">
-            I craft high-end digital experiences with a focus on architectural precision and aesthetic minimalism.
-          </p>
-          
-          <div className="flex gap-6">
-             <a href="#work" className="text-sm font-bold uppercase tracking-widest border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground transition-colors">
-               View Projects
-             </a>
-             <a href="#contact" className="text-sm font-bold uppercase tracking-widest border-b border-transparent pb-1 hover:border-foreground transition-colors">
-               Get in Touch
-             </a>
-          </div>
-        </motion.div>
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background z-10" />
+        <img 
+          src={heroImage} 
+          alt="Abstract digital texture" 
+          className="w-full h-full object-cover opacity-40"
+        />
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative h-[60vh] w-full"
-        >
-          <div className="absolute inset-0 bg-gradient-to-tr from-background/20 to-transparent z-10" />
-          <img 
-            src={heroImage} 
-            alt="Abstract architectural texture" 
-            className="w-full h-full object-cover grayscale-[0.2] contrast-[1.05]"
-          />
-        </motion.div>
+      <div className="container px-6 md:px-12 relative z-20">
+        <div className="max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <span className="px-3 py-1 rounded-full border border-primary/20 bg-primary/10 text-primary text-sm font-mono uppercase tracking-wider">
+              Available for freelance
+            </span>
+          </motion.div>
+
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[1.1] mb-8 tracking-tight"
+          >
+            I help founders turn <br />
+            <span className="text-muted-foreground">ideas into seamless</span> <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">digital experiences.</span>
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
+          >
+            A Full Stack Creative Developer based in New York. I build accessible, pixel-perfect, and performant web experiences.
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-wrap gap-6"
+          >
+             <a 
+               href="#contact" 
+               className="group flex items-center gap-2 bg-foreground text-background px-8 py-4 rounded-full font-bold text-lg hover:bg-foreground/90 transition-all hover:scale-105 active:scale-95"
+             >
+               Let's Connect
+               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+             </a>
+             <a 
+               href="#work" 
+               className="flex items-center gap-2 px-8 py-4 rounded-full font-bold text-lg border border-border hover:bg-secondary/50 transition-all hover:scale-105 active:scale-95"
+             >
+               View Work
+             </a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

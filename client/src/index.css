@@ -28,82 +28,64 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --font-sans: "DM Sans", sans-serif;
-  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
 }
 
 :root {
-  /* Elegant, Warm Minimalist Palette */
-  --background: 40 20% 97%; /* Alabaster white */
-  --foreground: 240 5% 15%; /* Dark charcoal */
-
-  --card: 0 0% 100%;
-  --card-foreground: 240 5% 15%;
-
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 5% 15%;
-
-  --primary: 240 5% 15%;
-  --primary-foreground: 0 0% 98%;
-
-  --secondary: 40 10% 90%;
-  --secondary-foreground: 240 5% 15%;
-
-  --muted: 40 10% 90%;
-  --muted-foreground: 240 4% 46%;
-
-  --accent: 30 20% 90%; /* Subtle warmth */
-  --accent-foreground: 240 5% 15%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-
-  --border: 240 5% 88%;
-  --input: 240 5% 88%;
-  --ring: 240 5% 15%;
-
-  --radius: 0rem; /* Sharp edges for architectural feel */
-}
-
-.dark {
-  /* Deep, Sophisticated Dark Mode */
-  --background: 240 5% 10%;
+  /* Dark Mode Default - "Creative Developer" Aesthetic */
+  --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
 
-  --card: 240 5% 12%;
+  --card: 240 10% 6%; /* Slightly lighter than background */
   --card-foreground: 0 0% 98%;
 
-  --popover: 240 5% 10%;
+  --popover: 240 10% 3.9%;
   --popover-foreground: 0 0% 98%;
 
   --primary: 0 0% 98%;
-  --primary-foreground: 240 5% 10%;
+  --primary-foreground: 240 5.9% 10%;
 
-  --secondary: 240 5% 15%;
+  --secondary: 240 3.7% 15.9%;
   --secondary-foreground: 0 0% 98%;
 
-  --muted: 240 5% 15%;
-  --muted-foreground: 240 5% 65%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
 
-  --accent: 240 5% 15%;
+  --accent: 240 3.7% 15.9%;
   --accent-foreground: 0 0% 98%;
 
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
 
-  --border: 240 5% 20%;
-  --input: 240 5% 20%;
-  --ring: 240 5% 83.9%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+
+  --radius: 1rem;
 }
 
+/* Force dark mode look even without .dark class for this specific aesthetic request */
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    background-image: 
+      radial-gradient(circle at 50% 0%, hsl(240 10% 10%) 0%, transparent 75%),
+      radial-gradient(circle at 100% 0%, hsl(260 20% 10%) 0%, transparent 50%);
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-tight;
+    @apply font-display tracking-tight;
   }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }

@@ -2,54 +2,36 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="py-32 bg-secondary/30">
+    <section id="about" className="py-32 relative overflow-hidden">
+      {/* Decorative gradient */}
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10" />
+
       <div className="container px-6 md:px-12">
-        <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-24">
+        <div className="grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <h2 className="text-sm font-bold uppercase tracking-widest mb-6 text-muted-foreground">About</h2>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-primary mb-2">About Me</h2>
+            <h3 className="text-4xl md:text-5xl font-display font-bold mb-8 leading-tight">
+              Full-Stack Developer & <br />
+              <span className="text-muted-foreground">Creative Thinker</span>
+            </h3>
+            
+            <div className="flex gap-4 mb-8">
+               <a href="https://linkedin.com" target="_blank" className="text-sm font-bold uppercase hover:text-primary transition-colors">LinkedIn</a>
+               <a href="https://github.com" target="_blank" className="text-sm font-bold uppercase hover:text-primary transition-colors">GitHub</a>
+               <a href="https://twitter.com" target="_blank" className="text-sm font-bold uppercase hover:text-primary transition-colors">Twitter</a>
+            </div>
           </div>
           
-          <div>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-serif leading-tight mb-12"
-            >
-              I am a multidisciplinary designer and developer based in New York. I believe that good design is invisible—it's about creating intuitive, seamless experiences that solve real problems while delighting the user.
-            </motion.p>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-              <div>
-                <h4 className="text-sm font-bold uppercase mb-4 border-b border-border pb-2">Services</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>Art Direction</li>
-                  <li>UI/UX Design</li>
-                  <li>Frontend Development</li>
-                  <li>Brand Identity</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="text-sm font-bold uppercase mb-4 border-b border-border pb-2">Clients</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>Acme Corp</li>
-                  <li>Starlight Studios</li>
-                  <li>Future Ventures</li>
-                  <li>Museum of Design</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-sm font-bold uppercase mb-4 border-b border-border pb-2">Connect</h4>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li><a href="#" className="hover:text-foreground transition-colors">Twitter</a></li>
-                  <li><a href="#" className="hover:text-foreground transition-colors">LinkedIn</a></li>
-                  <li><a href="#" className="hover:text-foreground transition-colors">Instagram</a></li>
-                  <li><a href="#" className="hover:text-foreground transition-colors">Email</a></li>
-                </ul>
-              </div>
-            </div>
+          <div className="space-y-8 text-lg text-muted-foreground leading-relaxed">
+            <p>
+              I'm Alex, a proactive full-stack developer passionate about creating dynamic web experiences. 
+              From frontend to backend, I thrive on solving complex problems with clean, efficient code.
+            </p>
+            <p>
+              My expertise spans React, Next.js, and Node.js, and I'm always eager to learn more.
+              When I'm not immersed in work, I'm exploring new ideas and staying curious. 
+              Life's about balance, and I love embracing every part of it.
+            </p>
           </div>
         </div>
       </div>
